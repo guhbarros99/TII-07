@@ -1,28 +1,32 @@
-<!--
-PHP + HTML
-
-Crie um formulário que permita cadastrar produtos (nome e preço)
-Use funções para:
-- Inserir os produtos no array
--->
 <?php
-session_start();
 
-if(!isset($_SESSION['produtos'])) {
-    $_SESSION['produtos'] = [];
-}
+$user = "root";
+$password = "";
+$database = "loja_produtos";
 
 $produtos = [];
 
-if (isset($_GET['nome'])&& isset($_GET['preco']) ){
-    $nome = $_GET['nome'];
-    $preco = (float) $_GET['preco'];
+try {
+    $db = new PDO("mysql:host=localhost;dbname=$database", $user, "");
 
-    $_SESSION['produtos'][] = ["nome" => $nome, "preco" => $preco];
+    if (isset($_GET['nome']) && isset($_GET['preco'])) {
+        $nome = $_GET['nome'];
+        $preco = $_GET['preco'];
 
+
+        $stmt = $db->prepare("INSERT INTO produtos (nome, preco )VALUES (:nome, :preco)");
+
+        $stmt->execute([
+            ':nome' => $nome,
+            ':preco' => $preco
+        ]);
+    }
+    
+    $resultado = $db->query("SELECT * FROM produtos");
+    $produtos =$resultado->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Erro: " . $e->getMessage());
 }
-
-$produtos = $_SESSION['produtos'];
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +40,7 @@ $produtos = $_SESSION['produtos'];
 <body>
     <h1>Cadastro de Produto</h1>
 
-    <form method="get" action="desafio.php">
+    <form method="get" action="conexao.php">
         <label for="nome">Nome do Produto:</label>
         <input type="text" id="nome" name="nome" required>
 
