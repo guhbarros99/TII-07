@@ -1,27 +1,40 @@
 <?php
 
-class Pizza 
-{   
-    private int $id;    
+class Pizza
+{
+    private  $id;
     private string $sabor;
     private string $tamanho;
     private float $preco;
 
     public function __construct($id, $sabor, $tamanho, $preco)
-    {   
+    {
         $this->id = $id;
         $this->sabor = $sabor;
         $this->tamanho = $tamanho;
         $this->preco = $preco;
     }
 
-    public function getId(): float { return $this->id; }
-    public function getSabor(): float { return $this->sabor; }
-    public function getTamanho(): float { return $this->tamanho; }
-    public function getPreco(): float { return $this->preco; }
+    public function getId(): float
+    {
+        return $this->id;
+    }
+    public function getSabor(): String
+    {
+        return $this->sabor;
+    }
+    public function getTamanho(): String
+    {
+        return $this->tamanho;
+    }
+    public function getPreco(): float
+    {
+        return $this->preco;
+    }
 
-    public function setPreco(float $novoPreco): void {
-        if($novoPreco > 0) {
+    public function setPreco(float $novoPreco): void
+    {
+        if ($novoPreco > 0) {
             $this->preco = $novoPreco;
         }
     }
