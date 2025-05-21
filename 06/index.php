@@ -27,7 +27,6 @@ $contatos = $dao->getAll();
         </tr>
         <?php foreach ($contatos as $c): ?>
             <tr>
-                <td><?= $c->getId() ?></td>
                 <td><?= $c->getNome() ?></td>
                 <td>
                     <a href="#">Detalhes</a>

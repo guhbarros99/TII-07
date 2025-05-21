@@ -24,8 +24,7 @@ if(isset($_POST['nome']))
     
     <h2>Cadastrar Novo Contato:</h2>
 
-    <form action="contato_form.php" method= "post">
-        <label>Nome:</label>
+    <label>Nome:</label>
         <input type='text' name="nome" required>
 
         <button type="submit">Salvar</button>
