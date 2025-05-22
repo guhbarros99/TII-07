@@ -19,7 +19,6 @@ foreach($pizzas as $p) {
 </head>
 <body>
     <h2>Lista de Pizzas</h2>
-
     <table border="1" cellpading="5">
         <tr><th>ID</th><th>SABOR</th><th>TAMANHO</th><th>PREÇO</th></tr>
         <?php foreach($pizzas as $p): ?>
