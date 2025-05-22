@@ -31,17 +31,17 @@ class Produto {
     }
 }
 
-$p1 = new Produto('Abobora', 5.2);
-print_r($p1);
+//$p1 = new Produto('Abobora', 5.2);
+//print_r($p1);
 
+//echo "<br>";
+//echo ($p1->getNome());
+//echo "<br>";
+//echo ($p1->setNome("AbOBORA"));
+//echo "<br>";
+/*echo ($p1->getNome() . " - " . $p1->getPreco());
 echo "<br>";
-echo ($p1->getNome());
-echo "<br>";
-echo ($p1->setNome("AbOBORA"));
-echo "<br>";
-echo ($p1->getNome() . " - " . $p1->getPreco());
-echo "<br>";
-echo ($p1);
+echo ($p1);*/
 
 # Prodcedural
 /*
