@@ -16,9 +16,6 @@ class ProdutoDAO
     {
         return null;
 
-    }
-    public function create(Produto $produto) :void
-    {
 
     }
 
