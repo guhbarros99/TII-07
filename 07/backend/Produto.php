@@ -7,9 +7,9 @@ class Produto
     private float $preco; 
     private bool $ativo;  
     private string $dataDeCadastro;
-    private string $dataDeValidade;
+    private ?string $dataDeValidade;
 
-    public function __construct(?int $id,string $nome, float $preco, bool $ativo,string $dataDeCadastro,string $dataDeValidade)
+    public function __construct(?int $id, string $nome, float $preco, bool $ativo, string $dataDeCadastro, ?string $dataDeValidade)
 
     {
         $this->id = $id;

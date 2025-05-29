@@ -45,17 +45,17 @@ if(isset($_POST['sabor']) && isset($_POST['tamanho']) && isset($_POST['preco']))
         <?php endif; ?>
 
         <label>Sabor:</label>
-        <input type="text" name ="sabor" required value="<?= $pizza? $contato->getSabor() : '' ?>">
+        <input type="text" name ="sabor" required value="<?= $pizza? $pizza->getSabor() : '' ?>">
 
         <label>Tamanho:</label>
-        <input type="text" name="tamanho" required value="<?= $pizza? $contato->getTamanho() : '' ?>">
+        <input type="text" name="tamanho" required value="<?= $pizza? $pizza->getTamanho() : '' ?>">
 
         <label>Preço:</label>
-        <input type="text" name="preco" required value="<?= $pizza? $contato->getPreco() : '' ?>">
+        <input type="text" name="preco" required value="<?= $pizza? $pizza->getPreco() : '' ?>">
 
         <button type= "submit">Salvar</button>
+        <a href="index.php">Cancelar</a>
     </form>
     <br>
-    <a href="index.php">Cancelar</a>
 </body>
 </html>

@@ -1,4 +1,5 @@
 <?php
+
 require 'Pizza.php';
 require 'Conexao.php';
 
@@ -67,6 +68,11 @@ class PizzaDAO
         $stmt->bindParam(':tamanho', $tamanho);
         $stmt->bindParam(':preco', $preco);
         
+        $stmt->execute();
+    }public function delete (int $id) : void
+    {
+        $stmt = $this->db->prepare("DELETE FROM pizzas WHERE id = :id");
+        $stmt->bindParam('id', $id);
         $stmt->execute();
     }
 }

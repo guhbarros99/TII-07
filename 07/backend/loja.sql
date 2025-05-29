@@ -10,4 +10,14 @@ CREATE TABLE IF NOT EXISTS produtos (
     ativo BOOLEAN NOT NULL DEFAULT 1,
     dataDeCadastro DATE NOT NULL,
     dataDeValidade DATE
+); 
+
+-- CRIA A TABELA DE CLIENTES
+CREATE TABLE IF NOT EXISTS clientes (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    ativo BOOLEAN NOT NULL DEFAULT 1,
+    dataDeNascimento DATE NOT NULL
 );
+
