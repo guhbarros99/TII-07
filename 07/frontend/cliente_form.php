@@ -46,17 +46,18 @@ if ($_POST) {
         <?php endif; ?> <!--o que seria  endif??-->
 
         <label>Nome:</label>
-        <input type="text" name="id" required value="<?=$cliente ? $cliente->getId() : ''?>>
+        <input type="text" name="id" required value="<?=$cliente ? $cliente->getId() : ''?>">
         
         <label>CPF:</label>
-        <input type="text" name="id" required value="<?=$cliente ? $cliente->getId() :''?>>
+        <input type="text" name="id" required value="<?=$cliente ? $cliente->getId() :''?>">
 
         <label>Ativo:</label>
         <input type= "checkbox" name="ativo" required value="1" <?=$cliente && $cliente->getAtivo() ? 'checked' : '' ?>><br>
 
         <label>Data de Nascimento:</label>
-        <input type="date" name="dataDeNascimento" required value="<?=$cliente ? $cliente->getDataDeNascimento(): '' ?>>
+        <input type="date" name="dataDeNascimento" required value="<?=$cliente ? $cliente->getDataDeNascimento(): '' ?>">
+        <button type="submit">Salvar</button>
     </form>
-</body>
-
+    <a href="../index.php">Cancelar</a>
+</body> 
 </html>
