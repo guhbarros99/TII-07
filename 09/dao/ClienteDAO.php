@@ -44,7 +44,6 @@ class ClienteDAO
         $stmt = $this->db->prepare($sql);
         
         return $stmt->execute([
-            ':id' => $cliente->getId(),
             ':nome' => $cliente->getNome(),
             ':cpf' => $cliente->getCpf(),
             ':dataDeNascimento'=> $cliente-> getDataDeNascimento(),
@@ -65,7 +64,6 @@ class ClienteDAO
             ':dataDeNascimento'=> $cliente-> getDataDeNascimento(),
             ':ativo' =>$cliente->getAtivo()? 1 : 0
         ]);
-        
     }
 
     public function delete(int $id): bool
