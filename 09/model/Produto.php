@@ -1,6 +1,6 @@
 <?php
 
-class Produto
+class Produto implements JsonSerializable
 {
     private ?int $id;
     private string $nome; 
@@ -27,4 +27,17 @@ class Produto
     public function getDataDeCadastro(): string { return $this->dataDeCadastro;}
     public function getDataDeValidade(): string { return $this->dataDeValidade;}
 
+
+public function jsonSerialize(): mixed {
+    
+return[
+        
+    'id' => $this->id,
+    'nome' => $this->nome,
+    'preco' => $this->preco,
+    'ativo' => $this->ativo,
+    'dataDeCadastro' => $this->dataDeCadastro,
+    'dataDeValidade' => $this->dataDeValidade,
+    ];
+    }
 }

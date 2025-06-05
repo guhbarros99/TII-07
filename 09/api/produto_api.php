@@ -4,64 +4,55 @@ header('Acess-Control-Allow-Origin');
 header('Acess-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Acess-Control-Allow-Headers: Content-Type');
 
-require_once __DIR__ . '/../dao/ClienteDAO.php';
+require_once __DIR__ . '/../dao/ProdutoDAO.php';
 
-$dao = new ClienteDAO();
+$dao = new ProdutoDAO();
 $action = $_GET['action'] ?? null;
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 $inputBody = json_decode(file_get_contents('php://input'), true);
 
 switch ($action) {
-    case 'listar': // GET
+    case 'listar':
         echo json_encode($dao->getAll());
         break;
-
-    case 'buscar': // GET
+    case 'buscar':
         if ($id) {
-            $cliente = $dao->getById($id);
-            if ($cliente)
-                echo json_encode($cliente);
+            $produto = $dao->getById($id);
+            if ($produto)
+                echo json_encode($produto);
             else {
                 http_response_code(404);
-                echo json_encode(["error" => "Cliente não encontrado!"]);
+                echo json_encode(["error" => "Produto não encontrado!"]);
             }
         } else {
             http_response_code(400);
             echo json_encode(["error" => "Você não informou o ID"]);
         }
         break;
-
-    case 'cadastrar': // POST
+    case 'cadastrar':
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $inputBody) {
-            $cli = new Cliente(null, $inputBody['nome'], $inputBody['cpf'], $inputBody['dataDeNascimento'], $inputBody['ativo'] );
-            if($dao->create($cli))
-            {
+            $prd = new Produto(null, $inputBody['nome'], $inputBody['preco'], $inputBody['ativo'],  $inputBody['dataDeCadastro'],  $inputBody['dataDeValidade']);
+            if ($dao->create($prd)) {
                 http_response_code(201);
-                echo json_encode(['success' => 'Cliente cadastrado']);
-            }
-            else 
-            {
+                echo json_encode(['success' => 'Produto cadastrado']);
+            } else {
                 http_response_code(500);
-                echo json_encode(['error' => 'Cliente não']);
+                echo json_encode(['error' => 'Produto não']);
             }
         } else {
             http_response_code(400);
             echo json_encode(['error' => 'método incorreto']);
         }
         break;
-
-    case 'atualizar': // PUT
+    case 'atualizar':
         if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $inputBody && $id) {
-            $cli = new Cliente($id, $inputBody['nome'], $inputBody['cpf'], $inputBody['dataDeNascimento'], $inputBody['ativo']);
-            if($dao->update($cli))
-            {
+            $prd = new Produto($id, $inputBody['nome'], $inputBody['preco'], $inputBody['ativo'], $inputBody['dataDeCadastro'], $inputBody['dataDeValidade']);
+            if ($dao->update($prd)) {
                 http_response_code(204);
-                echo json_encode(['success' => 'Cliente atualizado']);
-            }
-            else 
-            {
+                echo json_encode(['success' => 'Produto atualizado']);
+            } else {
                 http_response_code(500);
-                echo json_encode(['error' => 'Cliente não cadastrado!']);
+                echo json_encode(['error' => 'Produto não cadastrado!']);
             }
         } else {
             http_response_code(400);
@@ -69,7 +60,7 @@ switch ($action) {
         }
         break;
 
-    case 'excluir': // DELETE
+    case 'excluir':
         if ($id && $_SERVER['REQUEST_METHOD'] == 'DELETE') {
             if ($dao->delete($id)) {
                 echo json_encode(['message' => 'Cliente excluído!']);

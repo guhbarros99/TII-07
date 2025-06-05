@@ -8,7 +8,7 @@ class Cliente
     private bool $ativo;
     private ?string $dataDeNascimento;             // não entendi a questão da '?'
 
-    public function __construct(?int $id, string $nome, string $cpf, bool $ativo, ?string $dataDeNascimento )
+    public function __construct(?int $id, string $nome, string $cpf, bool $ativo, ?string $dataDeNascimento)
     {
         $this->id = $id;
         $this->nome = $nome;

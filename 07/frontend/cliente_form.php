@@ -9,7 +9,7 @@ if (isset($_GET['id'])) {
 }
 
 if ($_POST) {
-    $id = $_POST['id'];
+    $id = $_POST['id'] ?? null;
     $nome = $_POST['nome'];
     $cpf = $_POST['cpf'];
     $ativo = $_POST['ativo'] ? true : false;
