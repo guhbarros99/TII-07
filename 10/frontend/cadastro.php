@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../UsuarioDAO.php";
 require_once "../Usuario.php";
 
@@ -19,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $token = bin2hex(random_bytes (25));
             $usuario = new Usuario(null, $nome, $senhaHash, $email);
             if ($dao->create($usuario)) {
+
+                $_SESSION['token'] = $token;
                 header('Location: index.php');
                 exit();
             } else {
@@ -40,4 +43,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </form>
 
-<a href="#">Já tem conta?</a>
+<a href="login.php">Já tem conta?</a>
