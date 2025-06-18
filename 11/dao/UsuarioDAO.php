@@ -1,7 +1,7 @@
 <?php
 
-require_once '.../Database.php';
-require_once '.../Usuario.php';
+require_once '../core/Database.php';
+require_once '../model/Usuario.php';
 
  class UsuarioDAO
  {

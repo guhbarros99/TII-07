@@ -1,6 +1,6 @@
 <?php
 
-class Usuario
+class Usuario implements JsonSerializable
 {
     private ?int $id;
     private string $nome;
@@ -22,4 +22,17 @@ class Usuario
     public function getSenha(): string{return $this-> senha;}
     public function getEmail(): string{return $this-> email;}
     public function getToken(): ?string{return $this-> token;}
+    
+    public function jsonSerialize(): mixed {
+    
+        return[
+                
+            'id' => $this->id,
+            'nome' => $this->nome,
+            'senha' => $this->senha,
+            'email' => $this->email,
+            'token' => $this->token
+            ];
+            }
 }
+        
