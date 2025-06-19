@@ -1,7 +1,7 @@
 <?php
 
-require_once '../core/Database.php';
-require_once '../model/Usuario.php';
+require_once __DIR__ .'/../core/Database.php';
+require_once __DIR__ .'/../model/Usuario.php';
 
  class UsuarioDAO
  {
@@ -24,15 +24,34 @@ require_once '../model/Usuario.php';
             'token' =>$usuario -> getToken()
         ]);
     }
-    public function getByEmail(string $email): ?Usuario
+    public function getByEmail(string $token): ?Usuario
     {
-        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE email = email");
-        $stmt ->execute([':email' => $email]);
+        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE token = :token");
+        $stmt ->execute([':token' => $token]);
         $data = $stmt->fetch();
 
         return $data ? 
-            new Usuario($data['id'], $data['nome'],$data['email'],$data['token'], $data[''],$data[''] )
+            new Usuario($data['id'], $data['nome'],$data['senha'], $data['email'],$data['token'] )
             : null;     
     }
-    public function getByToken (string $token): 
- }
+    public function getByToken(string $token) : ?Usuario
+    {
+        $stmt = $this->db->prepare("SELECT * FROM usuario WHERE token = :token");
+        $stmt->execute([':token' => $token]);
+        $data = $stmt->fetch();
+
+        return $data ?
+            new Usuario($data['id'], $data['nome'], $data['senha'], $data['email'], $data['token'])
+            : null;
+    }
+
+    public function updateToken(int $id, ?string $token): bool
+    {
+        $sql = "UPDATE usuario SET token = :token WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute([
+            ':token' => $token,
+            ':id' => $id
+        ]);
+    }
+}
