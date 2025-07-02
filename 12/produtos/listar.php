@@ -7,6 +7,9 @@ $produtos = $dao->getAll();
 $user = getLoggedUser();
 ?>
 <h1>Produtos</h1>
+<?php if($user): ?>
+         <a href="./criar.php">Cadastrar</a>
+ <?php endif; ?>
 <?php foreach ($produtos as $p): ?>
     <p>
         <a href="ver.php?id=<?= $p->getId() ?>">

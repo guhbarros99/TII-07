@@ -10,11 +10,11 @@ $produto = $dao->getById($id);
 if (!$produto) exit("Produto não encontrado");
 
 $fornecedoresDao = new FornecedorDAO();
-$fornecedores = $fornecedorDao->getAll();
+$fornecedores = $fornecedoresDao->getAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fornecedorId = filter_input(INPUT_POST, 'fornecedor_id', FILTER_VALIDATE_INT);
-    $fornecedor = $fornecedorId ? $fornecedorDao->getById($fornecedorId) : null;
+    $fornecedor = $fornecedorId ? $fornecedoresDao->getById($fornecedorId) : null;
 
     $produto = new Produto(
         $id,
